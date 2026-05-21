@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+/* ===================== CSS CUSTOM PROPERTIES ===================== */
+:root {
+  --bg-void: #030508;
+  --bg-dark: #070b12;
+  --bg-card: #0c1220;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-lit: rgba(99, 179, 255, 0.25);
+  --text: #eef2ff;
+  --muted: #7a8aaa;
+  --blue: #4f9bff;
+  --blue-bright: #6eb4ff;
+  --green: #22d97e;
+  --purple: #9b6bff;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===================== TAILWIND THEME EXTENSIONS ===================== */
+@theme {
+  --color-void: #030508;
+  --color-dark: #070b12;
+  --color-card: #0c1220;
+  --color-oak-blue: #4f9bff;
+  --color-oak-blue-bright: #6eb4ff;
+  --color-oak-green: #22d97e;
+  --color-oak-purple: #9b6bff;
+  --color-oak-muted: #7a8aaa;
+  --color-oak-text: #eef2ff;
+
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-fade-up: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-orb-drift: orb-drift 10s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-slide-msg: slideMsg 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+}
+
+/* ===================== KEYFRAMES ===================== */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -30px) scale(1.08); }
+  66%       { transform: translate(-30px, 15px) scale(0.95); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+
+@keyframes slideMsg {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
+}
+
+@keyframes barGrow {
+  from { height: 0; }
+  to   { height: var(--bar-h, 100%); }
+}
+
+@keyframes widthFill {
+  from { width: 0; }
+  to   { width: var(--fill-w, 100%); }
+}
+
+/* ===================== BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-void);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===================== SCROLLBAR ===================== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ===================== SCROLL REVEAL ===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s var(--ease-expo), transform 0.75s var(--ease-expo);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===================== TYPOGRAPHY ===================== */
+.font-display { font-family: 'Sora', sans-serif; }
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-green {
+  background: linear-gradient(135deg, var(--green) 0%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===================== HERO ===================== */
+.hero-line-wrap { overflow: hidden; }
+.hero-line {
+  display: block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.9s var(--ease-expo), opacity 0.9s ease;
+}
+.hero-line.in { transform: translateY(0); opacity: 1; }
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ===================== SERVICE CARD ===================== */
+.service-card {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: 100%;
+  background: linear-gradient(145deg, rgba(79,155,255,0.1) 0%, rgba(155,107,255,0.07) 100%);
+  transition: top 0.45s var(--ease-expo);
+  z-index: 0;
+  pointer-events: none;
+}
+.service-card:hover::before { top: 0; }
+.service-card > * { position: relative; z-index: 1; }
+
+/* ===================== COMPARISON TABLE ===================== */
+.compare-row { cursor: default; }
+.compare-row:hover .c-cell { background: rgba(255,255,255,0.025); }
+
+/* ===================== FORM ===================== */
+.field {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 13px 16px;
+  width: 100%;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  resize: none;
+}
+.field:focus { border-color: var(--blue); background: rgba(79,155,255,0.04); }
+.field::placeholder { color: var(--muted); }
+
+/* ===================== RANGE SLIDER ===================== */
+input[type=range] { -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer; width: 100%; }
+input[type=range]::-webkit-slider-runnable-track { background: rgba(255,255,255,0.12); border-radius: 4px; height: 5px; }
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  margin-top: -5px; background: var(--blue);
+  border-radius: 50%; height: 15px; width: 15px;
+  box-shadow: 0 0 0 3px rgba(79,155,255,0.2);
+}
+input[type=range]:focus { outline: none; }
+
+/* ===================== ACCORDION ===================== */
+.acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease-expo); }
+.acc-body.open { max-height: 400px; }
+.acc-icon { transition: transform 0.35s var(--ease-expo); }
+.acc-icon.open { transform: rotate(45deg); }
+
+/* ===================== PROGRESS BAR ===================== */
+.prog-bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.08); overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 3px; width: 0; transition: width 1.3s var(--ease-expo); }
+
+/* ===================== MOBILE MENU ===================== */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg-dark);
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+
+/* ===================== CHAT BUBBLE ===================== */
+.chat-msg { opacity: 0; }
+.chat-msg.shown { animation: slideMsg 0.4s var(--ease-expo) forwards; }
