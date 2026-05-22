@@ -9,14 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-oak-blue flex items-center justify-center shadow-[0_0_14px_rgba(79,155,255,0.35)]">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                  <path d="M9 2C6.5 2 4.5 4 4.5 6.5C4.5 9 6.5 11 9 11C9 13.5 7 15.5 4.5 15.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
-                  <path d="M9 11C11.5 11 13.5 9 13.5 6.5C13.5 4 11.5 2 9 2" stroke="rgba(255,255,255,0.5)" strokeWidth="1.8" strokeLinecap="round" />
-                  <circle cx="9" cy="11" r="1.5" fill="white" />
-                </svg>
-              </div>
+            <div className="mb-4">
               <span
                 className="text-xl font-bold text-oak-text tracking-tight"
                 style={{ fontFamily: 'var(--sora), Sora, sans-serif' }}

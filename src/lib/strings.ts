@@ -564,6 +564,8 @@ export const strings = {
     form: {
       namePlaceholder: 'Vardas',
       lastnamePlaceholder: 'Pavardė',
+      emailPlaceholder: 'El. paštas',
+      phonePlaceholder: 'Telefono numeris',
       businessType: {
         label: 'Verslo tipas',
         options: [

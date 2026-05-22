@@ -29,6 +29,8 @@ export default function Contact() {
   const { contact } = strings
   const [name, setName] = useState('')
   const [lastname, setLastname] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [businessType, setBusinessType] = useState('')
   const [message, setMessage] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -130,6 +132,24 @@ export default function Contact() {
                     value={lastname}
                     onChange={(e) => setLastname(e.target.value)}
                     required
+                    className="field"
+                  />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <input
+                    type="email"
+                    placeholder={contact.form.emailPlaceholder}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="field"
+                  />
+                  <input
+                    type="tel"
+                    placeholder={contact.form.phonePlaceholder}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     className="field"
                   />
                 </div>
