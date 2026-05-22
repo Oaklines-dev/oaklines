@@ -139,13 +139,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — Dashboard card */}
+        {/* Right — AI adoption stats panel */}
         <div className="hidden lg:flex justify-end">
           <div className="relative w-full max-w-[480px]">
             {/* Floating badge 1 */}
             <div className="absolute -left-10 top-24 z-20 flex items-center gap-2 bg-[rgba(12,18,32,0.9)] border border-[rgba(255,255,255,0.1)] rounded-xl px-4 py-2.5 backdrop-blur-sm animate-float shadow-xl text-xs font-medium text-oak-text">
               <div className="w-2 h-2 rounded-full bg-oak-green animate-pulse-dot" />
-              {hero.dashboard.floatBadge1}
+              AI rinka 2024: $196.6B
             </div>
 
             {/* Floating badge 2 */}
@@ -154,77 +154,76 @@ export default function Hero() {
               style={{ animation: 'float 7s ease-in-out infinite 1s' }}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <rect x="1" y="1" width="5" height="5" rx="1" stroke="#4f9bff" strokeWidth="1.2" />
-                <rect x="8" y="1" width="5" height="5" rx="1" stroke="#4f9bff" strokeWidth="1.2" />
-                <rect x="1" y="8" width="5" height="5" rx="1" stroke="#4f9bff" strokeWidth="1.2" />
-                <rect x="8" y="8" width="5" height="5" rx="1" stroke="#4f9bff" strokeWidth="1.2" />
+                <polyline points="1 11 4 7 7 9 10 4 13 2" stroke="#22d97e" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              {hero.dashboard.floatBadge2}
+              Augimas: +37% per metus
             </div>
 
-            {/* Main dashboard card */}
+            {/* Main stats card */}
             <div className="w-full bg-card border border-[rgba(255,255,255,0.08)] rounded-2xl shadow-[0_24px_80px_rgba(0,0,0,0.6)] overflow-hidden">
               {/* macOS header */}
               <div className="flex items-center gap-2 px-5 py-3.5 border-b border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]">
                 <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
                 <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
                 <span className="w-3 h-3 rounded-full bg-[#28c940]" />
-                <span className="ml-3 text-xs text-oak-muted font-medium">{hero.dashboard.title}</span>
+                <span className="ml-3 text-xs text-oak-muted font-medium">AI adopcijos tendencijos 2024</span>
               </div>
 
               <div className="p-5 space-y-5">
-                {/* Stats row */}
+                {/* Global stats row */}
                 <div className="grid grid-cols-3 gap-4 pb-5 border-b border-[rgba(255,255,255,0.06)]">
-                  {hero.dashboard.stats.map((stat, i) => (
-                    <StatCounter key={i} {...stat} />
-                  ))}
+                  <StatCounter value={77} suffix="%" label="Verslo AI naudojimas" />
+                  <StatCounter value={270} suffix="%" label="Augimas per 4 m." />
+                  <StatCounter value={80} suffix="%" label="Procesų automatizacija" />
                 </div>
 
-                {/* Bar chart */}
+                {/* Adoption trend bars */}
                 <div>
-                  <div className="text-xs text-oak-muted mb-3">{hero.dashboard.chartLabel}</div>
+                  <div className="text-xs text-oak-muted mb-3">AI verslo augimas (2020–2026 prog.)</div>
                   <div className="flex items-end gap-2 h-20">
-                    {barHeights.map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-t-sm transition-all duration-700"
-                        style={{
-                          height: `${h}%`,
-                          background: barHighlighted.includes(i)
-                            ? 'linear-gradient(180deg, #4f9bff 0%, #2a6fd4 100%)'
-                            : 'rgba(255,255,255,0.1)',
-                          transitionDelay: `${i * 80 + 800}ms`,
-                        }}
-                      />
+                    {([28, 38, 47, 58, 72, 85, 95] as number[]).map((h, i) => (
+                      <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                        <div
+                          className="w-full rounded-t-sm transition-all duration-700"
+                          style={{
+                            height: `${h}%`,
+                            background: i >= 4
+                              ? 'linear-gradient(180deg, #4f9bff 0%, #2a6fd4 100%)'
+                              : 'rgba(255,255,255,0.1)',
+                            transitionDelay: `${i * 80 + 800}ms`,
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between mt-1.5">
+                    {['\'20', '\'21', '\'22', '\'23', '\'24', '\'25', '\'26'].map((yr) => (
+                      <span key={yr} className="text-[9px] text-oak-muted flex-1 text-center">{yr}</span>
                     ))}
                   </div>
                 </div>
 
-                {/* Lead pipeline rows */}
-                <div className="space-y-2.5">
-                  {hero.dashboard.leads.map((lead, i) => {
-                    const statusColors: Record<string, string> = {
-                      green: 'bg-[rgba(34,217,126,0.12)] text-oak-green',
-                      blue: 'bg-[rgba(79,155,255,0.12)] text-oak-blue',
-                      muted: 'bg-[rgba(255,255,255,0.06)] text-oak-muted',
-                      purple: 'bg-[rgba(155,107,255,0.12)] text-oak-purple',
+                {/* Automation coverage by area */}
+                <div className="space-y-2.5 pt-1">
+                  {([
+                    { label: 'Klientų komunikacija', pct: 68, color: 'blue' },
+                    { label: 'Pardavimų procesai', pct: 54, color: 'purple' },
+                    { label: 'Duomenų analizė', pct: 71, color: 'green' },
+                    { label: 'Klientų aptarnavimas', pct: 62, color: 'blue' },
+                  ] as { label: string; pct: number; color: string }[]).map((row) => {
+                    const barColors: Record<string, string> = {
+                      blue: '#4f9bff', purple: '#9b6bff', green: '#22d97e',
                     }
                     return (
-                      <div
-                        key={i}
-                        className="flex items-center justify-between p-2.5 rounded-lg bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.05)] transition-colors"
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <div className="w-6 h-6 rounded-full bg-[rgba(79,155,255,0.15)] flex items-center justify-center text-xs font-bold text-oak-blue">
-                            {lead.name[0]}
-                          </div>
-                          <span className="text-xs text-oak-text font-medium">{lead.name}</span>
+                      <div key={row.label} className="flex items-center gap-3">
+                        <span className="text-xs text-oak-muted w-36 flex-shrink-0">{row.label}</span>
+                        <div className="flex-1 h-1.5 rounded-full bg-[rgba(255,255,255,0.07)] overflow-hidden">
+                          <div
+                            className="h-full rounded-full"
+                            style={{ width: `${row.pct}%`, background: barColors[row.color] }}
+                          />
                         </div>
-                        <span
-                          className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${statusColors[lead.color]}`}
-                        >
-                          {lead.status}
-                        </span>
+                        <span className="text-xs font-semibold text-oak-text w-8 text-right">{row.pct}%</span>
                       </div>
                     )
                   })}

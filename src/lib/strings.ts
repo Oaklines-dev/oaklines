@@ -419,7 +419,7 @@ export const strings = {
         title: 'Greitas ir matomas poveikis',
         quote:
           '„Suprojektavome kiekvieną sistemą taip, kad klientai matytų pirmuosius rezultatus per 30 dienų — ne po 6 mėnesių."',
-        authors: 'Paulius & Karolis, Oaklines įkūrėjai',
+        authors: 'Pijus & Alaa, Oaklines įkūrėjai',
       },
       {
         icon: 'check-circle',
@@ -499,52 +499,47 @@ export const strings = {
       {
         question: 'Kaip veikia Oaklines AI sistema?',
         answer:
-          'Oaklines AI sistema naudoja pažangius dirbtinio intelekto modelius, kad automatiškai surastų potencialius klientus, juos kvalifikuotų ir užmegztų pirmąjį ryšį. Sistema mokosi iš kiekvienos sąveikos ir nuolat tobulina rezultatus. Jūsų komanda gauna tik jau paruoštus, kvalifikuotus kontaktus.',
+          'Oaklines AI sistema naudoja pažangius dirbtinio intelekto modelius, kad automatiškai užmegztų pirmąjį ryšį ir kvalifikuotų klientą. Sistema mokosi iš kiekvienos sąveikos ir nuolat tobulina rezultatus. Jūsų komanda gauna tik jau paruoštus, kvalifikuotus kontaktus.',
       },
       {
         question: 'Kiek laiko užtrunka sistemos įdiegimas?',
         answer:
-          'Standartinė integracija užtrunka 10–14 darbo dienų. Tai apima verslo analizę, sistemos konfigūraciją, CRM integraciją ir bandomosios kampanijos paleidimą. Pirmieji duomenys ir kontaktai pasirodo paprastai jau per pirmąją savaitę.',
+          'Standartinis sistemos įdiegimas dažniausiai užtrunka 10–14 darbo dienų. Procesas apima verslo analizę, sistemos konfigūraciją, CRM integraciją ir automatizacijų paleidimą. Pirmieji rezultatai bei kontaktai dažniausiai pasirodo jau per pirmąją savaitę po sistemos aktyvavimo.',
       },
       {
         question: 'Ar galiu naudoti su esama CRM sistema?',
         answer:
-          'Taip — palaikome daugiau kaip 40 populiariausių CRM platformų, įskaitant HubSpot, Salesforce, Pipedrive, Monday.com ir kt. Jei naudojate nestandartinę sistemą, siūlome pasirinktinę API integraciją.',
+          'Taip. Sistema gali būti integruojama su jūsų naudojama CRM platforma bei kitais verslo įrankiais, kad duomenys ir procesai veiktų vienoje vietoje.',
       },
       {
-        question: 'Kokie rezultatai realūs?',
+        question: 'Kokie rezultatai galimi?',
         answer:
-          'Vidutiniškai mūsų klientai mato 40–78 % kontaktų augimą per pirmuosius 90 dienų. Tačiau rezultatai stipriai priklauso nuo sektoriaus, vidutinės sandorio vertės ir dabartinės proceso brandos. Nemokamos konsultacijos metu pateikiame realius prognozinius skaičius jūsų situacijai.',
+          'AI sistemos padeda optimizuoti klientų komunikaciją, automatizuoti pasikartojančius procesus ir efektyviau valdyti potencialius klientus. Galutinis rezultatas priklauso nuo jūsų verslo modelio, naudojamų sistemų ir automatizacijos apimties.',
       },
       {
         question: 'Kiek kainuoja Oaklines paslaugos?',
         answer:
-          'Kainos priklauso nuo pasirinkto paketo ir verslo dydžio. Pradedančiajam verslui — nuo €990/mėn. Tikslią kainą apskaičiuojame konsultacijos metu pagal jūsų tikslus ir reikalingą apimtį. Nėra paslėptų mokesčių.',
+          'Kainos priklauso nuo jūsų verslo poreikių, automatizacijos apimties ir pasirinktų sprendimų. Po trumpos konsultacijos pateikiame aiškų ir individualų pasiūlymą pagal jūsų situaciją.',
       },
       {
         question: 'Ar reikalingos techninės žinios naudojimui?',
         answer:
-          'Ne — sistema sukurta taip, kad pardavimų komanda galėtų ją naudoti be jokių techninių žinių. Prietaisų lentelė yra intuityvi, o visos techninės detalės yra mūsų atsakomybė. Taip pat teikiame mokymą komandai.',
+          'Ne. AI sistemos sukurtos taip, kad jas būtų paprasta naudoti kasdienėje veikloje. Visą techninę dalį, automatizacijų priežiūrą ir sistemos veikimą prižiūri mūsų komanda.',
       },
       {
-        question: 'Kaip matuojate sėkmę?',
+        question: 'Kaip matuojate rezultatus?',
         answer:
-          'Stebime aiškius KPI: kontaktų skaičių, kvalifikacijos rodiklį, atsakymo laiką, konversijų rodiklį ir ROI. Kiekvieną mėnesį gausite išsamią ataskaitą su progreso ir rekomendacijų apžvalga.',
-      },
-      {
-        question: 'Ar siūlote bandomąjį laikotarpį?',
-        answer:
-          'Siūlome nemokamą 30 minučių strateginę konsultaciją, kurios metu apskaičiuojame jūsų potencialų ROI ir pateikiame konkrečius augimo pasiūlymus. Taip pat dirbame su 30 dienų sėkmės garantija — jei nematote rezultatų, grąžiname mokestį.',
+          'Stebime pagrindinius rodiklius, tokius kaip užklausų skaičius, atsakymo greitis, klientų komunikacijos efektyvumas ir automatizuotų procesų veikimas. Pagal surinktus duomenis optimizuojame sistemas ir siekiame geresnių rezultatų.',
       },
     ],
   },
 
   cta: {
     tag: 'Pradėkite šiandien',
-    title: 'Paruošti padvigubinti klientų generavimą?',
+    title: 'Pasiruošę automatizuoti klientų komunikaciją?',
     subtitle:
-      'Prisijunkite prie daugiau kaip 1 200 verslų, kurie jau naudoja Oaklines AI sistemą augimui.',
-    button: 'Gauti nemokamą strategiją',
+      'Atraskite, kaip AI sistemos gali padėti efektyviau valdyti užklausas, automatizuoti procesus ir taupyti jūsų laiką.',
+    button: 'Gauti nemokamą konsultaciją',
   },
 
   contact: {
@@ -559,7 +554,7 @@ export const strings = {
     ],
     founders: {
       label: 'Įkūrėjai',
-      value: 'Paulius Kaminskis & Karolis Žukauskas',
+      value: 'Pijus & Alaa',
     },
     company: {
       name: 'UAB Oaklines',

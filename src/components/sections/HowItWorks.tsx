@@ -9,25 +9,8 @@ export default function HowItWorks() {
   const [visibleMessages, setVisibleMessages] = useState<number[]>([])
   const chatRef = useRef<HTMLDivElement>(null)
   const hasAnimated = useRef(false)
-  const intervalRef = useRef<ReturnType<typeof setInterval>>(null)
 
   const { howItWorks } = strings
-
-  // Auto-cycle steps
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % howItWorks.steps.length)
-    }, 3500)
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
-  }, [howItWorks.steps.length])
-
-  const handleStepClick = (i: number) => {
-    if (intervalRef.current) clearInterval(intervalRef.current)
-    setActiveStep(i)
-    intervalRef.current = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % howItWorks.steps.length)
-    }, 3500)
-  }
 
   // Chat animation on section enter
   useEffect(() => {
@@ -74,10 +57,10 @@ export default function HowItWorks() {
 
             <div className="space-y-2">
               {howItWorks.steps.map((step, i) => (
-                <button
+                <div
                   key={i}
-                  onClick={() => handleStepClick(i)}
-                  className={`w-full text-left flex gap-5 p-5 rounded-xl transition-all duration-300 group ${
+                  onMouseEnter={() => setActiveStep(i)}
+                  className={`w-full text-left flex gap-5 p-5 rounded-xl transition-all duration-300 group cursor-default ${
                     activeStep === i
                       ? 'bg-[rgba(79,155,255,0.07)] border border-[rgba(79,155,255,0.2)]'
                       : 'border border-transparent hover:bg-[rgba(255,255,255,0.03)]'
@@ -112,7 +95,7 @@ export default function HowItWorks() {
                       {step.description}
                     </p>
                   </div>
-                </button>
+                </div>
               ))}
             </div>
           </div>

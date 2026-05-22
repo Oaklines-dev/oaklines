@@ -88,14 +88,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Company details */}
-              <div className="p-5 bg-card border border-[rgba(255,255,255,0.07)] rounded-xl mt-4">
-                <div className="text-xs font-semibold text-oak-text mb-2">{contact.company.name}</div>
-                <div className="text-xs text-oak-muted space-y-1">
-                  <div>{contact.company.code}</div>
-                  <div>{contact.company.vat}</div>
-                </div>
-              </div>
             </div>
           </RevealWrapper>
 

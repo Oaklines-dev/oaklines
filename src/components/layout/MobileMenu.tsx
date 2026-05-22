@@ -21,7 +21,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
       {/* Close button */}
       <div className="flex items-center justify-between px-6 h-[72px] border-b border-[rgba(255,255,255,0.06)]">
         <span
-          className="font-display font-bold text-xl tracking-tight"
+          className="font-bold text-xl tracking-tight text-oak-text"
           style={{ fontFamily: 'var(--sora), Sora, sans-serif' }}
         >
           Oaklines

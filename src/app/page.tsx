@@ -8,7 +8,6 @@ import HowItWorks from '@/components/sections/HowItWorks'
 import Results from '@/components/sections/Results'
 import WhoWeHelp from '@/components/sections/WhoWeHelp'
 import Approach from '@/components/sections/Approach'
-import Features from '@/components/sections/Features'
 import FAQ from '@/components/sections/FAQ'
 import CTABanner from '@/components/sections/CTABanner'
 import Contact from '@/components/sections/Contact'
@@ -26,7 +25,6 @@ export default function Home() {
         <Results />
         <WhoWeHelp />
         <Approach />
-        <Features />
         <FAQ />
         <CTABanner />
         <Contact />
