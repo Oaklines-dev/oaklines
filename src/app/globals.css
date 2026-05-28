@@ -224,3 +224,66 @@ input[type=range]:focus { outline: none; }
 /* ===================== CHAT BUBBLE ===================== */
 .chat-msg { opacity: 0; }
 .chat-msg.shown { animation: slideMsg 0.4s var(--ease-expo) forwards; }
+
+/* ===================== PREMIUM CONTACT FORM ===================== */
+@keyframes successPop {
+  0%   { opacity: 0; transform: scale(0.72) translateY(16px); }
+  60%  { transform: scale(1.04) translateY(-3px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes checkDraw {
+  from { stroke-dashoffset: 60; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.contact-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  color: #eef2ff;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  padding: 14px 18px;
+  outline: none;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.contact-field::placeholder { color: rgba(122, 138, 170, 0.45); }
+.contact-field:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+.contact-field:focus {
+  border-color: rgba(79, 155, 255, 0.65);
+  background: rgba(79, 155, 255, 0.04);
+  box-shadow: 0 0 0 4px rgba(79, 155, 255, 0.1), 0 2px 20px rgba(79, 155, 255, 0.06);
+}
+
+.contact-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a8aaa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 44px;
+}
+.contact-select option { background: #0c1220; color: #eef2ff; }
+
+.btn-shimmer { position: relative; overflow: hidden; }
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%; width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  transition: left 0s;
+}
+.btn-shimmer:hover:not(:disabled)::after {
+  left: 140%;
+  transition: left 0.55s ease;
+}
+
+.contact-success { animation: successPop 0.5s var(--ease-expo) both; }
+.contact-check { stroke-dasharray: 60; stroke-dashoffset: 60; animation: checkDraw 0.5s ease 0.25s forwards; }
