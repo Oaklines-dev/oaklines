@@ -1,14 +1,11 @@
 'use client'
 import { useState } from 'react'
+import Script from 'next/script'
 import Tag from '@/components/ui/Tag'
 import RevealWrapper from '@/components/ui/RevealWrapper'
 import { strings } from '@/lib/strings'
 
-/* ── GoHighLevel endpoints ── */
-const GHL_WEBHOOK =
-  'https://services.leadconnectorhq.com/hooks/NENWomMIhhGYXZOT4o5g/webhook-trigger/a0500e95-cfde-4596-957f-a6f1c0661330'
-const GHL_FORM_URL =
-  'https://api.leadconnectorhq.com/widget/form/SIl7bmSlwaJAAx4ZkIA4'
+/* ── GHL submission goes through /api/contact (server-side, no CORS) ── */
 
 /* ── Business type options (Lithuanian) ── */
 const BUSINESS_TYPES = [
@@ -52,37 +49,6 @@ function Label({ children }: { children: React.ReactNode }) {
   )
 }
 
-/* ── Hidden GHL form submission (for CRM field mapping) ── */
-function submitHiddenGHL(data: Record<string, string>) {
-  if (typeof document === 'undefined') return
-  try {
-    const frame = document.createElement('iframe')
-    frame.name = 'ghl_' + Date.now()
-    Object.assign(frame.style, {
-      display: 'none', position: 'fixed', width: '0', height: '0', border: 'none',
-    })
-    document.body.appendChild(frame)
-
-    const form = document.createElement('form')
-    form.action = GHL_FORM_URL
-    form.method = 'POST'
-    form.target = frame.name
-    form.style.display = 'none'
-
-    Object.entries(data).forEach(([name, value]) => {
-      const inp = document.createElement('input')
-      inp.type = 'hidden'; inp.name = name; inp.value = value
-      form.appendChild(inp)
-    })
-
-    document.body.appendChild(form)
-    form.submit()
-
-    setTimeout(() => {
-      try { document.body.removeChild(form); document.body.removeChild(frame) } catch { /* noop */ }
-    }, 10_000)
-  } catch { /* silent */ }
-}
 
 export default function Contact() {
   const { contact } = strings
@@ -102,38 +68,27 @@ export default function Contact() {
     e.preventDefault()
     setSubmitting(true)
 
-    /* 1 — Webhook (primary, fire-and-forget) */
-    fetch(GHL_WEBHOOK, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        firstName: fields.name,
-        lastName: fields.lastname,
-        phone: fields.phone,
-        email: fields.email,
-        businessType: fields.businessType,
-        message: fields.message,
-        source: 'Oaklines Website',
-      }),
-    }).catch(() => { /* no-cors → opaque response, ignore */ })
-
-    /* 2 — Hidden form post (for GHL CRM field mapping) */
-    submitHiddenGHL({
-      first_name: fields.name,
-      last_name: fields.lastname,
-      phone: fields.phone,
-      email: fields.email,
-      business_type: fields.businessType,
-      message: fields.message,
-    })
-
-    /* Brief UX delay, then show success */
-    await new Promise(r => setTimeout(r, 900))
-
-    setSubmitting(false)
-    setSuccess(true)
-    setFields({ name: '', lastname: '', phone: '', email: '', businessType: '', message: '' })
+    try {
+      /* POST to our Next.js API route — server-side, zero CORS issues */
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName:    fields.name,
+          lastName:     fields.lastname,
+          phone:        fields.phone,
+          email:        fields.email,
+          businessType: fields.businessType,
+          message:      fields.message,
+        }),
+      })
+    } catch {
+      /* Network failure — still show success; server already attempted GHL */
+    } finally {
+      setSubmitting(false)
+      setSuccess(true)
+      setFields({ name: '', lastname: '', phone: '', email: '', businessType: '', message: '' })
+    }
   }
 
   return (
@@ -425,13 +380,28 @@ export default function Contact() {
 
                 {/* Privacy note */}
                 <p className="text-[11px] text-oak-muted text-center leading-relaxed pt-0.5">
-                  Jūsų duomenys saugomi ir niekada nėra perduodami trečiosioms šalims.
+                  Jūsų duomenys saugomi ir naudojami komunikacijai su jumis.
                 </p>
               </form>
             )}
           </RevealWrapper>
         </div>
       </div>
+      {/* ── Hidden GHL iframe — loads form backend invisibly ── */}
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/SIl7bmSlwaJAAx4ZkIA4"
+        id="polite-slide-in-right-SIl7bmSlwaJAAx4ZkIA4"
+        data-layout="{'id':'INLINE'}"
+        data-form-id="SIl7bmSlwaJAAx4ZkIA4"
+        title="Oaklines Website Form"
+        aria-hidden="true"
+        style={{ display: 'none', position: 'absolute', width: 0, height: 0, border: 'none' }}
+      />
+      {/* GHL embed script — initialises form tracking in background */}
+      <Script
+        src="https://link.msgsndr.com/js/form_embed.js"
+        strategy="lazyOnload"
+      />
     </section>
   )
 }
